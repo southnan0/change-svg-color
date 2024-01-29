@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .menu-item-wrapper{
+                display: inline-block;
+                width: 128px;
+                height: 128px;
+                overflow: hidden;
+            }
+            .menu-item-wrapper:hover .menu-item-icon{
+                background-color: red;
+            }
+            .menu-item-icon{
+                display: inline-block;
+                width: 128px;
+                height: 128px;
+                background-color: #474F5E;
+            }
+            .menu-item-icon.firefox{
+                background-color: unset;
+                filter: drop-shadow(#474F5E -128px 0);
+                transform: translateX(128px);
+            }
+            .menu-item-wrapper:hover .menu-item-icon.firefox{
+                background-color: unset;
+                filter: drop-shadow(red -128px 0);
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <span id="menuSpanWrapper" class="menu-item-wrapper">
+                <span id="menuSpan" class="menu-item-icon" />
+            </span>
+        </div>
+    </body>
+
+    <script>
+        const isFirefox = /firefox/i.test(navigator.userAgent)
+
+        const menuSpanEl = document.getElementById('menuSpan')
+        if(isFirefox) {
+            menuSpanEl.classList.add('firefox')
+            menuSpanEl.style.backgroundImage = 'url("./home.svg")'
+        }else{
+            menuSpanEl.style.webkitMaskBoxImage = 'url("./home.svg") 0 0'
+        }
+    </script>
+</html>
